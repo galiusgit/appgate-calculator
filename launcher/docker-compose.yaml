@@ -1,0 +1,21 @@
+version: '3.0'
+services: 
+  appgate_calc: 
+    container_name: appgate_calc
+    environment:
+      TZ: "America/Bogota"
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8093:8093
+    volumes:
+      - ./target:/home/appgate-calculator/target
+      - ./logs:/home/appgate-calculator/target/classes/logs
+      - ./calculator_db.db:/calculator_db.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8093/diagnostic/health.check"]
+      interval: 60s
+      timeout: 10s
+      retries: 5
