@@ -21,12 +21,12 @@ public class ModelTetst {
 		Date creationDate = DateUtil.getCurrentDate();
 		Date updateDate = DateUtil.getCurrentDate();
 		var result = new CalcSession("8991e126-2330-11ec-9621-0242ac130002", 
-				CalcStatus.OPEN, BigDecimal.ZERO, "Some description", creationDate, updateDate);
+				CalcStatus.PENDING_RESULT, BigDecimal.ZERO, "Some description", creationDate, updateDate);
 		
 		Assertions.assertEquals(result.getId(), "8991e126-2330-11ec-9621-0242ac130002");
 		Assertions.assertEquals(result.getCreationDate(), creationDate);
 		Assertions.assertEquals(result.getUpdateDate(), updateDate);
-		Assertions.assertEquals(CalcStatus.OPEN, result.getStatus());
+		Assertions.assertEquals(CalcStatus.PENDING_RESULT, result.getStatus());
 		Assertions.assertEquals(BigDecimal.ZERO, result.getResult());
 		Assertions.assertEquals(result.getDescription(), "Some description");
 		

@@ -10,9 +10,9 @@ import com.appgate.calc.domain.model.CalcSessionListRes;
 import com.appgate.calc.domain.model.CalcSessionRes;
 import com.appgate.calc.domain.model.NewOperationRes;
 import com.appgate.calc.domain.model.Operation;
-import com.appgate.calc.domain.ports.CalcRepositoryPort;
+import com.appgate.calc.domain.ports.CalcSessionRepositoryPort;
 import com.appgate.calc.domain.ports.CalcServicePort;
-import com.appgate.calc.domain.service.CalcProcessor;
+import com.appgate.calc.domain.service.CalcProcessorImpl;
 
 /**
  * The Class CalcServiceAdapter.
@@ -29,10 +29,10 @@ public class CalcServiceAdapter implements CalcServicePort {
 	
 	/** The calculator repository port. */
 	@Autowired
-	private CalcRepositoryPort calcRepositoryPort;
+	private CalcSessionRepositoryPort calcRepositoryPort;
 	
 	/** The calculator processor. */
-	private CalcProcessor calcProcessor = new CalcProcessor();
+	private CalcProcessorImpl calcProcessor = new CalcProcessorImpl();
 
 	@Override
 	public CalcSessionRes addCalcSession(String description) {

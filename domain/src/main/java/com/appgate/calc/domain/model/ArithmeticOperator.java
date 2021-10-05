@@ -1,5 +1,17 @@
 package com.appgate.calc.domain.model;
 
-public class ArithmeticOperator {
+public enum ArithmeticOperator {
+	
+	NONE,
+	
+	SUM,
+	
+	SUBTRACT,
+	
+	MULTIPLY,
+	
+	DIVIDE,
+	
+	POW
 
 }

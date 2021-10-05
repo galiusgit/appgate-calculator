@@ -12,24 +12,12 @@ import com.appgate.calc.infra.entity.CalcSessionEntity;
  */
 public class CalcSessionMapper {
 
-	/**
-	 * Map.
-	 *
-	 * @param CalcSession the calc result
-	 * @return the calc result entity
-	 */
-	public static CalcSessionEntity map(CalcSession calcSession) {
+	public static CalcSessionEntity mapTo(CalcSession calcSession) {
 		return new CalcSessionEntity(calcSession.getId(), calcSession.getStatus(), calcSession.getResult(),
 				calcSession.getDescription(), calcSession.getCreationDate(), calcSession.getUpdateDate());
 	}
 
-	/**
-	 * Map.
-	 *
-	 * @param CalcSessionEntity the calc result entity
-	 * @return the calc result
-	 */
-	public static CalcSession map(CalcSessionEntity calcSessionEntity) {
+	public static CalcSession mapTo(CalcSessionEntity calcSessionEntity) {
 		return new CalcSession(calcSessionEntity.getId(), calcSessionEntity.getStatus(), calcSessionEntity.getResult(),
 				calcSessionEntity.getDescription(), calcSessionEntity.getCreationDate(), calcSessionEntity.getUpdateDate());
 	}

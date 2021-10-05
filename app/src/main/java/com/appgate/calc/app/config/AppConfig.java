@@ -19,6 +19,8 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(AppConfig.class);
+	
+	public static final String APP_KEY = "appgate-calc-api";
 
 	/** The rate limit interceptor. */
 	@Autowired

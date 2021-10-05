@@ -1,30 +1,53 @@
-package com.appgate.calc.domain.model;
+package com.appgate.calc.infra.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Operation implements Serializable {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	private static final long serialVersionUID = 895963896531596885L;
+import com.appgate.calc.domain.model.ArithmeticOperator;
+import com.appgate.calc.domain.model.OperationType;
+
+@Entity
+@Table(name = "operation", schema = "calculator")
+public class OperationEntity implements Serializable {
 	
+	private static final long serialVersionUID = -1593933589637059617L;
+
+	@Id
 	private String id;
 	
+	@Column(name = "calc_session_id", nullable = false)
 	private String calcSessionId;
 	
+	@Column(name = "value", nullable = false)
 	private BigDecimal value;
 	
+	@Column(name = "other_session_id")
 	private String fromOtherSessionId;
 	
+	@Column(name = "creation_date", nullable = false)
 	private Date creationDate;
 	
+	@Column(name= "type", nullable = false, length = 32)
+	@Enumerated(value = EnumType.STRING)
 	private OperationType type; 
 	
 	private ArithmeticOperator operator;
 	
 	private String description;
-	
-	public Operation(String id, String calcSessionId, BigDecimal value, String fromOtherSessionId, Date creationDate,
+
+	public OperationEntity() {
+		super();
+	}
+
+	public OperationEntity(String id, String calcSessionId, BigDecimal value, String fromOtherSessionId, Date creationDate,
 			OperationType type, ArithmeticOperator operator, String description) {
 		super();
 		this.id = id;

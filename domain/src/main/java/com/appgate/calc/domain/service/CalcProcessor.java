@@ -1,16 +1,13 @@
 package com.appgate.calc.domain.service;
 
-import java.util.regex.Pattern;
+import java.math.BigDecimal;
 
-import com.appgate.calc.domain.exception.CalcException;
+import com.appgate.calc.domain.exception.AppCalcException;
+import com.appgate.calc.domain.model.ArithmeticOperator;
 
-/**
- * The Class CalcProcessor.
- * 
- * @author <a href="mailto:jorgeromen27@gmail.com">Jorge Romero</a>.
- * @version 1.0.0
- * @since 1.0.0
- */
-public class CalcProcessor {
-	
+public interface CalcProcessor {
+
+	public BigDecimal applyOperator(BigDecimal value1, BigDecimal value2, ArithmeticOperator operator)
+			throws AppCalcException;
+
 }

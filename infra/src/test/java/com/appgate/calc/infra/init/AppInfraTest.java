@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {"com.appgate.calc.infra.repository"},
 scanBasePackageClasses = {
-		com.appgate.calc.infra.adapters.CalcRepositoryAdapter.class,
+		com.appgate.calc.infra.adapters.CalcSessionRepositoryAdapter.class,
 })
 @PropertySource(ignoreResourceNotFound = false, value = "classpath:application_test.properties")
 @EnableJpaRepositories("com.appgate.calc.infra")

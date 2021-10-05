@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.appgate.calc.app.config.AppConfig;
+
 /**
  * The Class DiagnosticController.
  * 
@@ -37,7 +39,7 @@ public class DiagnosticController {
 	@GetMapping(value = "/health.check")
     @ResponseStatus(HttpStatus.OK)
     public String healthCheckRequest() throws IOException, InterruptedException {
-		LOGGER.info("Health check request.");
+		LOGGER.info(String.format("[%s] Health check request.", AppConfig.APP_KEY));
         return UP;
     }
 

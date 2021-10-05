@@ -6,7 +6,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.appgate.calc.domain.model.CalcStatus;
 
@@ -18,6 +21,7 @@ import com.appgate.calc.domain.model.CalcStatus;
  * @since 1.0.0
  */
 @Entity
+@Table(name = "calc_session", schema = "calculator")
 public class CalcSessionEntity implements Serializable {
 	
 	/** The Constant serialVersionUID. */
@@ -27,7 +31,8 @@ public class CalcSessionEntity implements Serializable {
 	@Id
 	private String id;
 	
-	@Column(nullable = false)
+	@Column(name= "status", nullable = false, length = 32)
+	@Enumerated(value = EnumType.STRING)
 	private CalcStatus status;
 	
 	private BigDecimal result;
@@ -36,13 +41,17 @@ public class CalcSessionEntity implements Serializable {
 	private String description;
 	
 	/** The creation date. */
-	@Column(nullable = false)
+	@Column(name = "creation_date", nullable = false)
 	private Date creationDate;
 	
 	/** The update date. */
-	@Column(nullable = false)
+	@Column(name = "update_date", nullable = false)
 	private Date updateDate;
 	
+	public CalcSessionEntity() {
+		super();
+	}
+
 	public CalcSessionEntity(String id, CalcStatus status, BigDecimal result, String description, Date creationDate,
 			Date updateDate) {
 		super();

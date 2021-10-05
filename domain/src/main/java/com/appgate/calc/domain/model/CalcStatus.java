@@ -2,8 +2,8 @@ package com.appgate.calc.domain.model;
 
 public enum CalcStatus {
 
-	OPEN,
+	PENDING_RESULT,
 	
-	COMPLETED;
+	HAS_RESULT;
 	
 }
