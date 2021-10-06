@@ -17,14 +17,43 @@ import com.appgate.calc.domain.model.operation.OperationRes;
  */
 public interface CalcServicePort {
 	
+	/**
+	 * Adds the calc session.
+	 *
+	 * @param description the description
+	 * @return the calc session res
+	 */
 	public CalcSessionRes addCalcSession(final String description);
 	
+	/**
+	 * Gets the all calc sessions.
+	 *
+	 * @return the all calc sessions
+	 */
 	public CalcSessionListRes getAllCalcSessions();
 	
+	/**
+	 * Builds the calc session process.
+	 *
+	 * @param calcProcessReq the calc process req
+	 * @return the calc process res
+	 */
 	public CalcProcessRes buildCalcSessionProcess(final CalcProcessReq calcProcessReq);
 	
+	/**
+	 * Adds the operation to session.
+	 *
+	 * @param operation the operation
+	 * @return the new operation res
+	 */
 	public NewOperationRes addOperationToSession(final OperationReq operation);
 	
+	/**
+	 * Gets the last result.
+	 *
+	 * @param calcSessionId the calc session id
+	 * @return the last result
+	 */
 	public OperationRes getLastResult(final String calcSessionId); 
 
 }

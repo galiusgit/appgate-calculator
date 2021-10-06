@@ -15,10 +15,21 @@ import com.appgate.calc.domain.util.DecimalUtil;
  */
 public class CalcProcessorImpl implements CalcProcessor {
 
+	/** The Constant CALC_VALIDATION. */
 	private static final String CALC_VALIDATION = "CALC_VALIDATION";
 	
+	/** The Constant CALC_ERROR. */
 	private static final String CALC_ERROR = "CALC_ERROR";
 
+	/**
+	 * Apply operator.
+	 *
+	 * @param value1 the value 1
+	 * @param value2 the value 2
+	 * @param operator the operator
+	 * @return the big decimal
+	 * @throws AppCalcException the app calc exception
+	 */
 	@Override
 	public BigDecimal applyOperator(BigDecimal value1, BigDecimal value2, ArithmeticOperator operator)
 			throws AppCalcException {
@@ -51,6 +62,14 @@ public class CalcProcessorImpl implements CalcProcessor {
 		return result;
 	}
 
+	/**
+	 * Initial validations.
+	 *
+	 * @param value1 the value 1
+	 * @param value2 the value 2
+	 * @param operator the operator
+	 * @throws AppCalcException the app calc exception
+	 */
 	private void initialValidations(BigDecimal value1, BigDecimal value2, ArithmeticOperator operator)
 			throws AppCalcException {
 		if (value1 == null) {

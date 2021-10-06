@@ -52,13 +52,25 @@ public class CalcSessionRepositoryAdapterTest {
 	public void getById() throws AppCalcException {
 		var result = calcRepo.getById(CALC_SESSION_ID);
 		Assertions.assertTrue(result.isPresent());
-		Assertions.assertTrue(result.isPresent());
 		Assertions.assertEquals(result.get().getId(), CALC_SESSION_ID);
 		Assertions.assertNotNull(result.get().getCreationDate());
 		Assertions.assertNotNull(result.get().getUpdateDate());
 		Assertions.assertEquals(CalcStatus.HAS_RESULT, result.get().getStatus());
 		Assertions.assertEquals(BigDecimal.ZERO, result.get().getResult());
 		Assertions.assertEquals(result.get().getDescription(), "Test description");
+	}
+	
+	@Test
+	public void updateCalcSession() throws AppCalcException {
+		var result = calcRepo.getById(CALC_SESSION_ID);
+		Assertions.assertTrue(result.isPresent());
+		Assertions.assertEquals(result.get().getDescription(), "Test description");
+		result.get().setDescription("new description");
+		
+		var upated = calcRepo.updateCalcSession(result.get());
+		
+		Assertions.assertTrue(upated.isPresent());
+		Assertions.assertEquals(upated.get().getDescription(), "new description");
 	}
 
 }

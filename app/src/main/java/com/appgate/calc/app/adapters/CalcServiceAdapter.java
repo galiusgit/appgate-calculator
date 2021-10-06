@@ -48,14 +48,17 @@ public class CalcServiceAdapter implements CalcServicePort {
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CalcServiceAdapter.class);
 	
+	/** The Constant ERROR_SAVE_MSG. */
 	private static final String ERROR_SAVE_MSG = "error trying to save calc session";
 	
+	/** The Constant ERROR_GETTING_SESSIONS_MSG. */
 	private static final String ERROR_GETTING_SESSIONS_MSG = "error trying to get session list";
 	
 	/** The calculator repository port. */
 	@Autowired
 	private CalcSessionRepositoryPort calcRepo;
 	
+	/** The ope repo. */
 	@Autowired
 	private OperationRepositoryPort opeRepo;
 	
@@ -63,6 +66,12 @@ public class CalcServiceAdapter implements CalcServicePort {
 	private CalcProcessor calcProcessor = new CalcProcessorImpl();
 
 	
+	/**
+	 * Adds the calc session.
+	 *
+	 * @param description the description
+	 * @return the calc session res
+	 */
 	@Override
 	public CalcSessionRes addCalcSession(String description) {
 		// step 1: initialize calc session
@@ -84,6 +93,11 @@ public class CalcServiceAdapter implements CalcServicePort {
 		}
 	}
 
+	/**
+	 * Gets the all calc sessions.
+	 *
+	 * @return the all calc sessions
+	 */
 	@Override
 	public CalcSessionListRes getAllCalcSessions() {
 		try {
@@ -95,6 +109,12 @@ public class CalcServiceAdapter implements CalcServicePort {
 		}
 	}
 
+	/**
+	 * Builds the calc session process.
+	 *
+	 * @param calcProcessReq the calc process req
+	 * @return the calc process res
+	 */
 	@Override
 	public CalcProcessRes buildCalcSessionProcess(final CalcProcessReq calcProcessReq) {
 		try {
@@ -118,6 +138,16 @@ public class CalcServiceAdapter implements CalcServicePort {
 		}
 	}
 	
+	/**
+	 * Calc operations process.
+	 *
+	 * @param calcSession the calc session
+	 * @param operations the operations
+	 * @param operator the operator
+	 * @param description the description
+	 * @return the calc process res
+	 * @throws AppCalcException the app calc exception
+	 */
 	@Transactional
 	public CalcProcessRes calcOperationsProcess(final CalcSession calcSession, final List<Operation> operations, 
 			final ArithmeticOperator operator, final String description) throws AppCalcException {
@@ -139,6 +169,14 @@ public class CalcServiceAdapter implements CalcServicePort {
 		return new CalcProcessRes(calsessionUpdated, operationResult, AppCodes.OK.name(), "calc session processed");
 	}
 	
+	/**
+	 * Update calc session.
+	 *
+	 * @param calcSession the calc session
+	 * @param result the result
+	 * @return the calc session
+	 * @throws AppCalcException the app calc exception
+	 */
 	private CalcSession updateCalcSession(final CalcSession calcSession, 
 			final BigDecimal result) throws AppCalcException {
 		calcSession.setUpdateDate(DateUtil.getCurrentDate());
@@ -152,6 +190,12 @@ public class CalcServiceAdapter implements CalcServicePort {
 		return calsessionUpdated.get();
 	}
 
+	/**
+	 * Adds the operation to session.
+	 *
+	 * @param opeReq the ope req
+	 * @return the new operation res
+	 */
 	@Override
 	public NewOperationRes addOperationToSession(OperationReq opeReq) {
 		// step 2: add operations to created session
@@ -167,6 +211,13 @@ public class CalcServiceAdapter implements CalcServicePort {
 		}
 	}
 	
+	/**
+	 * Gets the calc session.
+	 *
+	 * @param sessionId the session id
+	 * @return the calc session
+	 * @throws AppCalcException the app calc exception
+	 */
 	private CalcSession getCalcSession(String sessionId) throws AppCalcException {
 		var calcSession = calcRepo.getById(sessionId);
 		if (calcSession.isEmpty()) {
@@ -176,6 +227,13 @@ public class CalcServiceAdapter implements CalcServicePort {
 		return calcSession.get();
 	}
 	
+	/**
+	 * Adds the new operation.
+	 *
+	 * @param opeReq the ope req
+	 * @return the operation
+	 * @throws AppCalcException the app calc exception
+	 */
 	private Operation addNewOperation(OperationReq opeReq) throws AppCalcException {
 		var operation = opeRepo.createOperation(new Operation(UuidUtil.newUuid(), 
 				opeReq.getCalcSessionId(), opeReq.getValue(), null, 
@@ -188,6 +246,16 @@ public class CalcServiceAdapter implements CalcServicePort {
 		return operation.get();
 	}
 	
+	/**
+	 * Adds the result operation.
+	 *
+	 * @param sessionId the session id
+	 * @param value the value
+	 * @param operator the operator
+	 * @param description the description
+	 * @return the operation
+	 * @throws AppCalcException the app calc exception
+	 */
 	private Operation addResultOperation(final String sessionId, final BigDecimal value, 
 			final ArithmeticOperator operator, final String description) throws AppCalcException {
 		var operation = opeRepo.createOperation(new Operation(UuidUtil.newUuid(), 
@@ -201,6 +269,12 @@ public class CalcServiceAdapter implements CalcServicePort {
 		return operation.get();
 	}
 
+	/**
+	 * Gets the last result.
+	 *
+	 * @param calcSessionId the calc session id
+	 * @return the last result
+	 */
 	@Override
 	public OperationRes getLastResult(String calcSessionId) {
 		try {

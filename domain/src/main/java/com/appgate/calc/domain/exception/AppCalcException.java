@@ -25,26 +25,54 @@ public class AppCalcException extends Exception {
 	/** The date. */
 	private Date date;
 
+	/**
+	 * Instantiates a new app calc exception.
+	 *
+	 * @param code the code
+	 * @param errorMessage the error message
+	 */
 	public AppCalcException(String code, String errorMessage) {
 	    super(String.format(FORMAT_MSG, code, errorMessage));
 	    this.code = code;
 	    this.date = DateUtil.getCurrentDate();
 	}
 	
+	/**
+	 * Instantiates a new app calc exception.
+	 *
+	 * @param code the code
+	 * @param errorMessage the error message
+	 * @param cause the cause
+	 */
 	public AppCalcException(String code, String errorMessage, Throwable cause) {
 	    super(String.format(FORMAT_MSG, code, errorMessage), cause);
 	    this.code = code;
 	    this.date = DateUtil.getCurrentDate();
 	}
 
+	/**
+	 * Gets the code.
+	 *
+	 * @return the code
+	 */
 	public String getCode() {
 		return code;
 	}
 	
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
 	public Date getDate() {
 		return date;
 	}
 	
+	/**
+	 * Gets the formated msg.
+	 *
+	 * @return the formated msg
+	 */
 	public String getFormatedMsg() {
 		return String.format(FORMAT_MSG, DateUtil.dateToMsgFormat(this.date), getMessage());
 	}

@@ -35,6 +35,9 @@ public class UuidUtil {
      */
     public static boolean isUUID(String string) {
         try {
+        	if (string == null) {
+        		return false;
+        	}
             UUID.fromString(string);
             return true;
         } catch (IllegalArgumentException ex) {

@@ -15,12 +15,39 @@ import com.appgate.calc.domain.model.calcsession.CalcSession;
  */
 public interface CalcSessionRepositoryPort {
 	
+	/**
+	 * Creates the calc session.
+	 *
+	 * @param calcSession the calc session
+	 * @return the optional
+	 * @throws AppCalcException the app calc exception
+	 */
 	public Optional<CalcSession> createCalcSession(CalcSession calcSession) throws AppCalcException;
 	
+	/**
+	 * Update calc session.
+	 *
+	 * @param calcSession the calc session
+	 * @return the optional
+	 * @throws AppCalcException the app calc exception
+	 */
 	public Optional<CalcSession> updateCalcSession(CalcSession calcSession) throws AppCalcException;
 	
+	/**
+	 * Find all calc sessions.
+	 *
+	 * @return the list
+	 * @throws AppCalcException the app calc exception
+	 */
 	public List<CalcSession> findAllCalcSessions() throws AppCalcException;
 	
+	/**
+	 * Gets the by id.
+	 *
+	 * @param id the id
+	 * @return the by id
+	 * @throws AppCalcException the app calc exception
+	 */
 	public Optional<CalcSession> getById(String id) throws AppCalcException;
 	
 }

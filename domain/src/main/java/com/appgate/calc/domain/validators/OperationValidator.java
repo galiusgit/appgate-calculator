@@ -5,8 +5,21 @@ import com.appgate.calc.domain.exception.AppCalcException;
 import com.appgate.calc.domain.model.operation.OperationReq;
 import com.appgate.calc.domain.util.UuidUtil;
 
+/**
+ * The Class OperationValidator.
+ * 
+ * @author <a href="mailto:jorgeromen27@gmail.com">Jorge Romero</a>.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class OperationValidator {
 	
+	/**
+	 * Valid operation req.
+	 *
+	 * @param operationReq the operation req
+	 * @throws AppCalcException the app calc exception
+	 */
 	public static void validOperationReq(OperationReq operationReq) throws AppCalcException {
 		if (operationReq == null) {
 			throw new AppCalcException(OperationCodes.OPE_REQ_VALIDATION.name(), "operation request cannot be null");

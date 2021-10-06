@@ -1,4 +1,4 @@
-package com.appgate.calc.domain;
+package com.appgate.calc.domain.model;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,10 +6,18 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.appgate.calc.domain.model.DefaultResponse;
-
+/**
+ * The Class DefaultResponseTest.
+ * 
+ * @author <a href="mailto:jorgeromen27@gmail.com">Jorge Romero</a>.
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class DefaultResponseTest {
 
+	/**
+	 * Case 1.
+	 */
 	@Test
 	public void case1() {
 		DefaultResponse df = new DefaultResponse("CODE", "message test");

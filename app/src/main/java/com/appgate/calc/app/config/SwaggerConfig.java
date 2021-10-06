@@ -34,12 +34,9 @@ public class SwaggerConfig {
 	@Bean
     public Docket customDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
-        		//.apiInfo(apiInfo())
                 .select()
-                //.apis(RequestHandlerSelectors.basePackage("com.hendisantika.springboot.swagger"))
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.ant(ApiVersion.V1 + "/**"))
-                //.paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
         

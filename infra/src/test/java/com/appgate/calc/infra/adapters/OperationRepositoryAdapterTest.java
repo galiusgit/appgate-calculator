@@ -1,6 +1,7 @@
 package com.appgate.calc.infra.adapters;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -22,13 +23,13 @@ public class OperationRepositoryAdapterTest {
 	
 	private static final String DESCRIPTION = "operation test description 1";
 	
+	private Date creationDate = DateUtil.getCurrentDate();
+	
 	@Autowired
 	private OperationRepositoryPort opeRepo;
 	
 	@Test
 	public void createCalcSession() throws AppCalcException {
-		var creationDate = DateUtil.getCurrentDate();
-		
 		var toCreate = new Operation(OPERATION_ID, CALC_SESSION_ID, BigDecimal.ONE, null, 
 				creationDate, OperationType.RESULT, null, DESCRIPTION);
 		
@@ -66,6 +67,14 @@ public class OperationRepositoryAdapterTest {
 	}
 	
 	@Test
+	public void findBySessionIdAndDate() throws AppCalcException {
+		var resultList = opeRepo.findBySessionIdAndDate(CALC_SESSION_ID, creationDate);
+		
+		Assertions.assertNotNull(resultList);
+		Assertions.assertTrue(resultList.size() == 0);
+	}
+	
+	@Test
 	public void getLastResult() throws AppCalcException {
 		var result = opeRepo.getLastResult(CALC_SESSION_ID);
 		
@@ -79,8 +88,5 @@ public class OperationRepositoryAdapterTest {
 		Assertions.assertNull(result.get().getOperator());
 		Assertions.assertEquals(DESCRIPTION, result.get().getDescription());
 	}
-	
-	
-	
 
 }

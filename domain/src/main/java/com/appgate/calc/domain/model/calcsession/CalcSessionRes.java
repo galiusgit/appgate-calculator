@@ -14,17 +14,35 @@ public class CalcSessionRes extends DefaultResponse {
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -5521188284738299488L;
 	
+	/** The calc session. */
 	private CalcSession calcSession;
 
+	/**
+	 * Instantiates a new calc session res.
+	 *
+	 * @param calcSession the calc session
+	 * @param code the code
+	 * @param message the message
+	 */
 	public CalcSessionRes(CalcSession calcSession, String code, String message) {
 		super(code, message);
 		this.calcSession = calcSession;
 	}
 
+	/**
+	 * Gets the calc session.
+	 *
+	 * @return the calc session
+	 */
 	public CalcSession getCalcSession() {
 		return calcSession;
 	}
 
+	/**
+	 * Sets the calc session.
+	 *
+	 * @param calcSession the new calc session
+	 */
 	public void setCalcSession(CalcSession calcSession) {
 		this.calcSession = calcSession;
 	}
