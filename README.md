@@ -74,6 +74,7 @@ funcionando completo. <font size="6" style="color:green;">&#9745;</font>
 
 - Apply default query limits for list all entities <font size="6" style="color:red;">&#9746;</font>
 - CI/CD jenkins file pending <font size="6" style="color:red;">&#9746;</font>
+- Some sonar issues <font size="6" style="color:red;">&#9746;</font>
 
 ### run app (unit test):
 
