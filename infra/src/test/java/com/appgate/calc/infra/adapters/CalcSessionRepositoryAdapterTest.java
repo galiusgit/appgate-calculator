@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.appgate.calc.domain.exception.AppCalcException;
-import com.appgate.calc.domain.model.CalcSession;
-import com.appgate.calc.domain.model.CalcStatus;
+import com.appgate.calc.domain.model.calcsession.CalcSession;
+import com.appgate.calc.domain.model.calcsession.CalcStatus;
 import com.appgate.calc.domain.ports.CalcSessionRepositoryPort;
 import com.appgate.calc.domain.util.DateUtil;
 

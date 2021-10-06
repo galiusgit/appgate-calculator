@@ -9,13 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 import com.appgate.calc.domain.model.ArithmeticOperator;
-import com.appgate.calc.domain.model.OperationType;
+import com.appgate.calc.domain.model.operation.OperationType;
 
 @Entity
-@Table(name = "operation", schema = "calculator")
+@Table(name = "operation", schema = "calculator", indexes = {
+		@Index(name = "index_operation_calc_session_id", columnList = "calc_session_id", unique = false),
+		@Index(name = "index_operation_creation_date", columnList = "creation_date", unique = false) })
 public class OperationEntity implements Serializable {
 	
 	private static final long serialVersionUID = -1593933589637059617L;

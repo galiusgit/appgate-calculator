@@ -1,4 +1,4 @@
-package com.appgate.calc.domain.model;
+package com.appgate.calc.domain.model.calcsession;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

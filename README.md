@@ -75,6 +75,8 @@ funcionando completo.
 
 ### TODO, to improve:
 
+- Apply default query limits for list all entities
+-
 
 ### run app (unit test):
 

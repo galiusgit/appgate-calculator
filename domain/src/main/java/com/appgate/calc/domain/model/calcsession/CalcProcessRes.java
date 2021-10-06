@@ -1,14 +1,17 @@
-package com.appgate.calc.domain.model;
+package com.appgate.calc.domain.model.calcsession;
 
-public class NewOperationRes extends DefaultResponse {
+import com.appgate.calc.domain.model.DefaultResponse;
+import com.appgate.calc.domain.model.operation.Operation;
 
-	private static final long serialVersionUID = 3870091727082484931L;
+public class CalcProcessRes extends DefaultResponse {
+
+	private static final long serialVersionUID = -7301215860801651171L;
 	
 	private CalcSession calcSession;
 	
 	private Operation operation;
 	
-	public NewOperationRes(CalcSession calcSession, Operation operation, String code, String message) {
+	public CalcProcessRes(CalcSession calcSession, Operation operation, String code, String message) {
 		super(code, message);
 		this.calcSession = calcSession;
 		this.operation = operation;

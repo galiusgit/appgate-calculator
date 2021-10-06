@@ -1,4 +1,6 @@
-package com.appgate.calc.domain.model;
+package com.appgate.calc.domain.model.calcsession;
+
+import com.appgate.calc.domain.model.DefaultResponse;
 
 /**
  * The Class CalcSessionRes.

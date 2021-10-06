@@ -1,6 +1,8 @@
-package com.appgate.calc.domain.model;
+package com.appgate.calc.domain.model.calcsession;
 
 import java.util.List;
+
+import com.appgate.calc.domain.model.DefaultResponse;
 
 /**
  * The Class CalcSessionListRes.

@@ -1,8 +1,10 @@
-package com.appgate.calc.domain.model;
+package com.appgate.calc.domain.model.operation;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import com.appgate.calc.domain.model.ArithmeticOperator;
 
 public class Operation implements Serializable {
 
@@ -24,7 +26,8 @@ public class Operation implements Serializable {
 	
 	private String description;
 	
-	public Operation(String id, String calcSessionId, BigDecimal value, String fromOtherSessionId, Date creationDate,
+	public Operation(String id, String calcSessionId, BigDecimal value, 
+			String fromOtherSessionId, Date creationDate,
 			OperationType type, ArithmeticOperator operator, String description) {
 		super();
 		this.id = id;

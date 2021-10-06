@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.appgate.calc.domain.model.CalcStatus;
+import com.appgate.calc.domain.model.calcsession.CalcStatus;
 
 /**
  * The Class CalcSessionEntity.

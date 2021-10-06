@@ -8,6 +8,8 @@ public enum OperationCodes {
 	
 	OPE_GETTING_ERROR,
 	
+	OPE_REQ_VALIDATION,
+	
 	OPE_GET_BY_CALC_SESSION_ERROR,
 
 }

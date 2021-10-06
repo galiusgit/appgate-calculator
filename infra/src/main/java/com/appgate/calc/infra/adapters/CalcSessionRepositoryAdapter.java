@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.appgate.calc.domain.codes.CalcSessionCodes;
 import com.appgate.calc.domain.exception.AppCalcException;
-import com.appgate.calc.domain.model.CalcSession;
+import com.appgate.calc.domain.model.calcsession.CalcSession;
 import com.appgate.calc.domain.ports.CalcSessionRepositoryPort;
 import com.appgate.calc.infra.mapper.CalcSessionMapper;
 import com.appgate.calc.infra.repository.CalcSessionRepository;
@@ -37,7 +37,7 @@ public class CalcSessionRepositoryAdapter implements CalcSessionRepositoryPort {
 	public Optional<CalcSession> createCalcSession(CalcSession calcSession) throws AppCalcException {
 		try {
 			var calcSaved = calcRepo.save(CalcSessionMapper.mapTo(calcSession));
-			return Optional.of(CalcSessionMapper.mapTo(calcSaved));
+			return Optional.ofNullable(CalcSessionMapper.mapTo(calcSaved));
 		} catch (Exception e) {
 			var msgError = "error trying to save calc session";
 			LOGGER.error(msgError, e);
@@ -72,6 +72,16 @@ public class CalcSessionRepositoryAdapter implements CalcSessionRepositoryPort {
 		}
 	}
 
-
+	@Override
+	public Optional<CalcSession> updateCalcSession(CalcSession calcSession) throws AppCalcException {
+		try {
+			var calcSaved = calcRepo.save(CalcSessionMapper.mapTo(calcSession));
+			return Optional.ofNullable(CalcSessionMapper.mapTo(calcSaved));
+		} catch (Exception e) {
+			var msgError = "error trying to update calc session";
+			LOGGER.error(msgError, e);
+			throw new AppCalcException(CalcSessionCodes.CALC_UPDATE_ERROR.name(), msgError, e);
+		}
+	}
 
 }

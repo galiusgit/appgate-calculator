@@ -1,5 +1,6 @@
 package com.appgate.calc.infra.adapters;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Component;
 
 import com.appgate.calc.domain.codes.OperationCodes;
 import com.appgate.calc.domain.exception.AppCalcException;
-import com.appgate.calc.domain.model.Operation;
+import com.appgate.calc.domain.model.operation.Operation;
 import com.appgate.calc.domain.ports.OperationRepositoryPort;
+import com.appgate.calc.domain.util.DateUtil;
 import com.appgate.calc.infra.mapper.OperationMapper;
 import com.appgate.calc.infra.repository.OperationRespository;
 
@@ -25,10 +27,10 @@ public class OperationRepositoryAdapter implements OperationRepositoryPort {
 	private OperationRespository opeRepo;
 
 	@Override
-	public Optional<Operation> createCalcSession(Operation newOperation) throws AppCalcException {
+	public Optional<Operation> createOperation(Operation newOperation) throws AppCalcException {
 		try {
 			var opeSaved = opeRepo.save(OperationMapper.mapTo(newOperation));
-			return Optional.of(OperationMapper.mapTo(opeSaved));
+			return Optional.ofNullable(OperationMapper.mapTo(opeSaved));
 		} catch (Exception e) {
 			var msgError = "error trying to save operation";
 			LOGGER.error(msgError, e);
@@ -52,11 +54,24 @@ public class OperationRepositoryAdapter implements OperationRepositoryPort {
 	public Optional<Operation> getLastResult(String calcSessionId) throws AppCalcException {
 		try {
 			var ope = opeRepo.getLastResult(calcSessionId);
-			return Optional.of(OperationMapper.mapTo(ope));
+			return Optional.ofNullable(OperationMapper.mapTo(ope));
 		} catch (Exception e) {
 			var msgError = String.format("error trying to get last operation by calc session id:[%s]", calcSessionId);
 			LOGGER.error(msgError, e);
 			throw new AppCalcException(OperationCodes.OPE_GET_BY_CALC_SESSION_ERROR.name(), msgError, e);
+		}
+	}
+
+	@Override
+	public List<Operation> findBySessionIdAndDate(String calcSessionId, Date creationDate) throws AppCalcException {
+		try {
+			var result = opeRepo.findBySessionIdAndDate(calcSessionId, creationDate);
+			return result.stream().map(n -> OperationMapper.mapTo(n)).collect(Collectors.toList());
+		} catch (Exception e) {
+			var msgError = String.format("error trying to get operations by calc session id:[%s] and creationm date:[%s]", 
+					calcSessionId, DateUtil.dateToMsgFormat(creationDate));
+			LOGGER.error(msgError, e);
+			throw new AppCalcException(OperationCodes.OPE_GET_LIST_BY_CALC_SESSION_ERROR.name(), msgError, e);
 		}
 	}
 

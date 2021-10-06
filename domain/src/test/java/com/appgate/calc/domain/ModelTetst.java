@@ -7,10 +7,10 @@ import java.util.Date;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.appgate.calc.domain.model.CalcSession;
-import com.appgate.calc.domain.model.CalcSessionListRes;
-import com.appgate.calc.domain.model.CalcSessionRes;
-import com.appgate.calc.domain.model.CalcStatus;
+import com.appgate.calc.domain.model.calcsession.CalcSession;
+import com.appgate.calc.domain.model.calcsession.CalcSessionListRes;
+import com.appgate.calc.domain.model.calcsession.CalcSessionRes;
+import com.appgate.calc.domain.model.calcsession.CalcStatus;
 import com.appgate.calc.domain.util.DateUtil;
 
 public class ModelTetst {

@@ -1,10 +1,12 @@
 package com.appgate.calc.domain.ports;
 
-import com.appgate.calc.domain.model.ArithmeticOperator;
-import com.appgate.calc.domain.model.CalcSessionListRes;
-import com.appgate.calc.domain.model.CalcSessionRes;
-import com.appgate.calc.domain.model.NewOperationRes;
-import com.appgate.calc.domain.model.Operation;
+import com.appgate.calc.domain.model.calcsession.CalcProcessReq;
+import com.appgate.calc.domain.model.calcsession.CalcProcessRes;
+import com.appgate.calc.domain.model.calcsession.CalcSessionListRes;
+import com.appgate.calc.domain.model.calcsession.CalcSessionRes;
+import com.appgate.calc.domain.model.operation.NewOperationRes;
+import com.appgate.calc.domain.model.operation.OperationReq;
+import com.appgate.calc.domain.model.operation.OperationRes;
 
 /**
  * The Interface CalcServicePort.
@@ -15,12 +17,14 @@ import com.appgate.calc.domain.model.Operation;
  */
 public interface CalcServicePort {
 	
-	public CalcSessionRes addCalcSession(String description);
+	public CalcSessionRes addCalcSession(final String description);
 	
 	public CalcSessionListRes getAllCalcSessions();
 	
-	public CalcSessionRes calculateSession(String id, ArithmeticOperator operator);
+	public CalcProcessRes buildCalcSessionProcess(final CalcProcessReq calcProcessReq);
 	
-	public NewOperationRes appOperationToSession(String id, Operation operation);
+	public NewOperationRes addOperationToSession(final OperationReq operation);
+	
+	public OperationRes getLastResult(final String calcSessionId); 
 
 }

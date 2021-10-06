@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.appgate.calc.domain.exception.AppCalcException;
-import com.appgate.calc.domain.model.CalcSession;
+import com.appgate.calc.domain.model.calcsession.CalcSession;
 
 /**
  * The Interface CalcSessionRepositoryPort.
@@ -16,6 +16,8 @@ import com.appgate.calc.domain.model.CalcSession;
 public interface CalcSessionRepositoryPort {
 	
 	public Optional<CalcSession> createCalcSession(CalcSession calcSession) throws AppCalcException;
+	
+	public Optional<CalcSession> updateCalcSession(CalcSession calcSession) throws AppCalcException;
 	
 	public List<CalcSession> findAllCalcSessions() throws AppCalcException;
 	

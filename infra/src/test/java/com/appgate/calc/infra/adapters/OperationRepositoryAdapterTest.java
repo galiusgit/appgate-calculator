@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.appgate.calc.domain.exception.AppCalcException;
-import com.appgate.calc.domain.model.Operation;
-import com.appgate.calc.domain.model.OperationType;
+import com.appgate.calc.domain.model.operation.Operation;
+import com.appgate.calc.domain.model.operation.OperationType;
 import com.appgate.calc.domain.ports.OperationRepositoryPort;
 import com.appgate.calc.domain.util.DateUtil;
 
@@ -32,7 +32,7 @@ public class OperationRepositoryAdapterTest {
 		var toCreate = new Operation(OPERATION_ID, CALC_SESSION_ID, BigDecimal.ONE, null, 
 				creationDate, OperationType.RESULT, null, DESCRIPTION);
 		
-		var result = opeRepo.createCalcSession(toCreate);
+		var result = opeRepo.createOperation(toCreate);
 		
 		Assertions.assertTrue(result.isPresent());
 		Assertions.assertEquals(OPERATION_ID, result.get().getId());

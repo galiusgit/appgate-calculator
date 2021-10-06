@@ -1,6 +1,6 @@
 package com.appgate.calc.infra.mapper;
 
-import com.appgate.calc.domain.model.CalcSession;
+import com.appgate.calc.domain.model.calcsession.CalcSession;
 import com.appgate.calc.infra.entity.CalcSessionEntity;
 
 /**
@@ -13,11 +13,17 @@ import com.appgate.calc.infra.entity.CalcSessionEntity;
 public class CalcSessionMapper {
 
 	public static CalcSessionEntity mapTo(CalcSession calcSession) {
+		if(calcSession == null) {
+			return null;
+		}
 		return new CalcSessionEntity(calcSession.getId(), calcSession.getStatus(), calcSession.getResult(),
 				calcSession.getDescription(), calcSession.getCreationDate(), calcSession.getUpdateDate());
 	}
 
 	public static CalcSession mapTo(CalcSessionEntity calcSessionEntity) {
+		if(calcSessionEntity == null) {
+			return null;
+		}
 		return new CalcSession(calcSessionEntity.getId(), calcSessionEntity.getStatus(), calcSessionEntity.getResult(),
 				calcSessionEntity.getDescription(), calcSessionEntity.getCreationDate(), calcSessionEntity.getUpdateDate());
 	}
